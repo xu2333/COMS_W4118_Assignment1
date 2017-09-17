@@ -15,7 +15,7 @@ int non_build_in_execute(struct environment* pe, struct command* pc, int* fd, in
 			else
 				close(fd[i]);
 		}
-		ret = execvp(pc->argv[0], pc->argv);
+		ret = execv(pc->argv[0], pc->argv);
 	}
 	else {
 		if(fd != NULL && 2 * index + 1 < 2 * (count - 1))

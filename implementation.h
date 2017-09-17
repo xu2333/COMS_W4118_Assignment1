@@ -6,6 +6,8 @@
 #include <string.h>
 #include <unistd.h>
 #include <errno.h>
+#include <sys/types.h>
+#include <sys/wait.h>
 #define HISTORY_MAX_SIZE 100
 #define COMMAND_MAX_LENGTH 256
 #define HISTORY_MAX_SIZE 100
