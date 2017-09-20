@@ -28,24 +28,30 @@ int command_execute(struct environment* pe, struct command* pc, int* fd, int ind
 }
 
 void commandline_tokenize(struct commandline* pcl, char* cmd) {	
-	char* token = NULL;
-	struct command* pc = (struct command*)calloc(1, sizeof(struct command));
-	token = strtok(cmd, " ");
-	pcl->head = pc;
-	(pcl->count)++;
-	while(token != NULL) {
-		if(strcmp(token, "|") == 0) {
-			struct command* npc = (struct command*)calloc(1, sizeof(struct command));
-			pc->next = npc;
-			pc = npc;
-			(pcl->count)++;
+	char* command = command = strtok(cmd, "|");
+	int offset = 0;
+	struct command* pct = NULL;
+	while(command != NULL) {
+		char* token = NULL;
+		offset = offset + strlen(command) + 1;
+		token = strtok(command, " ");
+		struct command* pc = (struct command*)calloc(1, sizeof(struct command));
+		if(pcl->head == NULL) {
+			pcl->head = pc;
+			pct = pc;
 		}
 		else {
+			pct->next = pc;
+			pct = pc;
+		}
+       		while(token != NULL) {
 			pc->argv[pc->argc] = (char*)malloc(strlen(token) + 1);
 			strcpy(pc->argv[pc->argc], token);
 			(pc->argc)++;
+			token = strtok(NULL, " ");
 		}
-		token = strtok(NULL, " ");
+		(pcl->count)++;
+		command = strtok(cmd + offset, "|");
 	}	
 }
 
@@ -71,9 +77,9 @@ int commandline_execute(struct environment* pe, char* cmd) {
 	struct commandline* pcl = (struct commandline*)calloc(1, sizeof(struct commandline));
 	struct command* pc = NULL;
 	commandline_tokenize(pcl, cmd);
-	pc = pcl->head;
 	if(pcl->count > 1)
 		fd = (int*)malloc(2 * sizeof(int) * (pcl->count - 1));
+	pc = pcl->head;
 	for(i = 0; i < pcl->count - 1; i++)
 		pipe(fd + 2 * i);
 	for(i = 0; i < pcl->count; i++) {

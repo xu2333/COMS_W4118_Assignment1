@@ -25,6 +25,7 @@ struct history {
 
 struct environment {
 	struct history* history;
+	struct fds_array* fds;
 };
 
 struct command {

@@ -1,0 +1,55 @@
+1.4 Keeping in mind the various definitions of operating system, consider whether the operating system should include applications such as web browsers and mail programs. Argue both that it should and that it should not, and support your answers.
+Answer:
+Arguments for including is that if web browsers are included in the operating system, the web browers can have better performance.
+Arguments for not including is that web browsers are application definitively. In addition, if web browsers are included in the operating system, it will affect the security of the operating system.
+
+1.6 Which of the following instructions should be privileged? a. Set value of timer. b. Read the clock. c. Clear memory. d. Issue a trap instruction. e. Turn off interrupts. f. Modify entries in device-status table. g. Switch from user to kernel mode. h. Access I/O device.
+Answer:
+(a), (c), (e), (f), (h).
+
+1.13 The issue of resource utilization shows up in different forms in different types of operating systems. List what resources must be managed carefully in the following settings: a. Mainframe or minicomputer systems. b. Workstations connected to servers. c. Mobile computers.
+Answer:
+
+
+
+1.19 What is the purpose of interrupts? How does an interrupt differ from a trap? Can traps be generated intentionally by a user program? If so, for what purpose?
+Answer:
+
+
+1.21 Some computer systems do not provide a privileged mode of operation in hardware. Is it possible to construct a secure operating system for these computer systems? Give arguments both that it is and that it is not possible.
+Answer:
+
+
+2.1 What is the purpose of system calls?
+Answer:
+Operating system provide system calls as API for user-level application to use system-level services.
+
+2.12 The services and functions provided by an operating system can be divided into two main catagories. Briefly describe the two catagories, and describe how they differ.
+Answer:
+One is ensuring the protection between processes that process can only access what it can access and modify what it can modify.
+The other is providing more functionalities than what hardware provides. For example, file systems.
+
+2.16 What are the advantages and disadvantages of using the same system call interface for manipulating both files and devices.
+Answer:
+Advantage:
+It is easier to manipulating all devices for software developers.
+Disadvantage:
+It is difficult to full implement all functionalities of different devices using same system call. Therefore, using same system for manipulating both files and devices will cause lossing of functionalities and performance.
+
+2.18 What are the two models of interprocess communication? What are the strengths and weaknesses of the two approaches?
+Answer:
+These models are message-passing model and shared-memory model.
+Strength of message-passing model:
+It is useful for exchanging smaller amount of data, because no conflicts need to be avoided.
+It is easier to implement than is shared memory for intercomputer communication.
+Weakness of message-passing model:
+It is slower than shared-memory model.
+Strength of shared-memory model:
+It allows maximum speed and convenience of communication.
+Weakness of shared-memory model:
+It is hard to implement.
+It has some problems in the areas of protection and synchronization between the processes sharing memory.
+
+2.24 Explain why Java programs running on Android systems do not use the standard Java API and virtual machine.
+Answer:
+Because the Android is running on mobile device and standard Java API and virtual machine is designed for PC or servers. So Android need to modify the standard API and virtual machine for mobile devices.

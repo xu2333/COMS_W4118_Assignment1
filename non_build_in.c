@@ -12,15 +12,14 @@ int non_build_in_execute(struct environment* pe, struct command* pc, int* fd, in
 				dup2(fd[i], 0);
 			else if(i == 2 * index + 1)
 				dup2(fd[i], 1);
-			else
-				close(fd[i]);
+			close(fd[i]);
 		}
 		ret = execv(pc->argv[0], pc->argv);
 	}
 	else {
 		if(fd != NULL && 2 * index + 1 < 2 * (count - 1))
 			close(fd[2 * index + 1]);
-		if(fd != NULL && 2 * (index - 1) > 0)
+		if(fd != NULL && 2 * (index - 1) >= 0)
 			close(fd[2 * (index - 1)]);
 		while(pid != waitpid(pid, &ret, WUNTRACED)) { }
 	}
